@@ -1,79 +1,86 @@
-* {
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+:root {
+  --cell-size: 150px;
+  --mark-size: calc(var(--cell-size) * .9)
+}
+
+body {
   margin: 0;
-  padding: 0;
 }
 
-.container {
-  display: flex;
-  background-color: white;
-  justify-content: center;
-  align-items: center;
+.board {
+  width: 100vw;
   height: 100vh;
-}
-
-.gameboard {
   display: grid;
-  /* grid: 160px / auto auto auto; */
-  grid-template-columns: 167px 167px 167px;
-  grid-template-rows: 167px 167px 167px;
-  width: 500px;
-  height: 500px;
-  /* background-color: cornflowerblue; */
-  border-radius: 25px;
+  justify-content: center;
+  align-content: center;
+  justify-items: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto)
 }
 
-.gameboard > div {
+.cell {
+  width: var(--cell-size);
+  height: var(--cell-size);
   display: flex;
+  width: 150px;
+  height: 150px;
+  border: 4px solid black;
   justify-content: center;
   align-items: center;
 }
 
-.board-1, .board-2, .board-3 {
-  border-bottom: solid black 8px;
+.cell:first-child,
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
 }
 
-.board-7, .board-8, .board-9 {
-  border-top: solid black 8px;;
+.cell:nth-child(3n + 1) {
+  border-left: none;
 }
 
-.board-1, .board-4, .board-7 {
-  border-right: solid black 8px;
+.cell:nth-child(3n + 3) {
+  border-right: none;
 }
 
-.board-3, .board-6, .board-9 {
-  border-left: solid black 8px;
+.cell:last-child,
+.cell:nth-child(8),
+.cell:nth-child(7) {
+  border-bottom: none;
 }
 
-.gameboard > div:hover {
-  background-color: rgb(163, 188, 236);
+.cell:hover {
+  background-color: rgb(131, 167, 233);
 }
 
-.board-1:hover {
+.cell:first-child:hover {
   border-top-left-radius: 25px;
+  background-color: rgb(131, 167, 233);
 }
 
-.board-3:hover {
+.cell:nth-child(3):hover {
   border-top-right-radius: 25px;
 }
 
-.board-7:hover {
+.cell:nth-child(7):hover {
   border-bottom-left-radius: 25px;
 }
 
-.board-9:hover {
+.cell:last-child:hover {
   border-bottom-right-radius: 25px;
 }
 
-.X-marker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 70px;
+/* .cell.x::before, */
+.cell.x::before {
+  content: 'X';
+  font-size: 90px;
 }
 
-.O-marker {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 70px;
+.cell.o::before {
+  content: 'O';
+  font-size: 100px;
 }

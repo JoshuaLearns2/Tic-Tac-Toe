@@ -1,33 +1,45 @@
-const X_MARKER = 'X-marker';
-const O_MARKER = 'O-marker';
+const X_CLASS = 'x'
+const O_CLASS = 'o'
+const WINNING_COMBINATIONS = [
+  [0, 1, 2],
+  [3, 4, 5],
+  [6, 7, 8],
+  [0, 3, 6],
+  [1, 4, 7],
+  [2, 5, 8],
+  [0, 4, 8],
+  [2, 4, 6]
+]
 
-let yourTurn;
+const cellElements = document.querySelectorAll('[data-cell]')
 
-const place = document.querySelectorAll('[data-board]')
+let circleTurn;
 
-place.forEach(board => {
-  board.addEventListener('click', handleClick, { once: true })
+cellElements.forEach(cell => {
+  cell.addEventListener('click', handleClick, { once: true })
 })
 
 function handleClick(e) {
-  const board = e.target;
+  const cell = e.target;
+  const currentClass = circleTurn ? O_CLASS : X_CLASS;
 
-  const currentTurn = yourTurn ? X_MARKER : O_MARKER;
+  placeMark(cell, currentClass)
 
-  const X = document.createElement('div');
-  const O = document.createElement('div');
-
-  const X_turn = place.appendChild(X);
-  const O_turn = place.appendChild(0);
-
-  X.classList.add('X-marker');
-  O.classList.add('O-marker');
-
-  X.textContent = 'X';
-  O.textContent = 'O';
-
+  swapTurns()
 }
 
-function placeMarker(board, currentTurn)
+function placeMark(cell, currentClass) {
+  cell.classList.add(currentClass)
+}
 
+function swapTurns() {
+  circleTurn = !circleTurn
+}
 
+function checkWin(currentClass) {
+  return WINNING_COMBINATIONS.some(conbination => {
+    return combination.every(index => {
+      return cellElements[index].classList.contains(currentClass)
+    })
+  })
+}
