@@ -1,3 +1,79 @@
-body {
-  background-color: aqua;
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.gameboard {
+  display: grid;
+  /* grid: 160px / auto auto auto; */
+  grid-template-columns: 167px 167px 167px;
+  grid-template-rows: 167px 167px 167px;
+  width: 500px;
+  height: 500px;
+  /* background-color: cornflowerblue; */
+  border-radius: 25px;
+}
+
+.gameboard > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.board-1, .board-2, .board-3 {
+  border-bottom: solid black 8px;
+}
+
+.board-7, .board-8, .board-9 {
+  border-top: solid black 8px;;
+}
+
+.board-1, .board-4, .board-7 {
+  border-right: solid black 8px;
+}
+
+.board-3, .board-6, .board-9 {
+  border-left: solid black 8px;
+}
+
+.gameboard > div:hover {
+  background-color: rgb(163, 188, 236);
+}
+
+.board-1:hover {
+  border-top-left-radius: 25px;
+}
+
+.board-3:hover {
+  border-top-right-radius: 25px;
+}
+
+.board-7:hover {
+  border-bottom-left-radius: 25px;
+}
+
+.board-9:hover {
+  border-bottom-right-radius: 25px;
+}
+
+.X-marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+}
+
+.O-marker {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
 }
